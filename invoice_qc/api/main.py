@@ -6,7 +6,11 @@ from typing import List, Dict, Any
 
 from invoice_qc.validator import validate_invoices
 
-app = FastAPI(title="Invoice QC API", version="1.0")
+app = FastAPI(
+    title="Invoice QC API",
+    version="1.0",
+    description="API for validating structured invoice JSON payloads."
+)
 
 
 # ----------------------- Models -----------------------
@@ -39,7 +43,7 @@ def health():
 @app.post("/validate-json")
 def validate_json(invoices: List[InvoiceInput]):
     """
-    Validate invoice JSON payload.
+    Validate structured invoice JSON payload.
     """
     invoices_data = [inv.dict() for inv in invoices]
     result = validate_invoices(invoices_data)

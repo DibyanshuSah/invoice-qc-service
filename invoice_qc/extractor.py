@@ -1,110 +1,144 @@
-# invoice_qc/extractor.py
-
 import pdfplumber
 import re
-from typing import List, Dict, Any
-from .schemas import Invoice, LineItem
-from .utils import parse_amount, parse_date
+import tempfile
 import os
+from typing import Dict, Any
 
 
-# --------------------- Helper: Match first regex ---------------------
-def get_first_match(patterns, text):
+# ---------------------------- HELPERS ----------------------------
+
+def clean(text: str):
+    if not text:
+        return ""
+    return text.replace("\t", " ").replace("  ", " ").strip()
+
+
+def find_value(patterns, text):
+    """Try multiple regex patterns."""
     for p in patterns:
-        m = re.search(p, text, flags=re.IGNORECASE | re.DOTALL)
+        m = re.search(p, text, flags=re.IGNORECASE)
         if m:
-            return m.group(1)
+            return m.group(1).strip()
     return None
 
 
-# --------------------- MAIN EXTRACTION FUNCTION ----------------------
-def extract_invoice_from_pdf(pdf_path: str) -> Dict[str, Any]:
+def extract_amount(text):
+    """Extract number 12,345.67 → 12345.67"""
+    if not text:
+        return None
+    m = re.search(r"([0-9]{1,3}(?:,[0-9]{2,3})*(?:\.[0-9]+)?)", text)
+    if m:
+        return float(m.group(1).replace(",", ""))
+    return None
 
-    # Read entire PDF text
-    with pdfplumber.open(pdf_path) as pdf:
+
+def extract_date(text):
+    if not text:
+        return None
+    m = re.search(r"(\d{1,2}-[A-Za-z]{3}-\d{2,4})", text)
+    return m.group(1) if m else None
+
+
+# ---------------------------- MAIN EXTRACTION ----------------------------
+
+def extract_invoice_from_pdf(filepath: str) -> Dict[str, Any]:
+
+    # Load PDF
+    with pdfplumber.open(filepath) as pdf:
         raw_text = "\n".join(page.extract_text() or "" for page in pdf.pages)
 
-    text = raw_text.replace("\t", " ").replace("  ", " ")
-
-    # ---------------- FIELD PATTERNS ----------------
-    patterns = {
-        "invoice_number": [
-            r"Bestellung\s+(AUFNR[0-9]+)",
-            r"Bestellung.*?(AUFNR[0-9]+)",
-            r"(AUFNR[0-9]+)"
-        ],
-        "invoice_date": [
-            r"vom\s+([0-9]{2}\.[0-9]{2}\.[0-9]{4})",
-            r"([0-9]{2}\.[0-9]{2}\.[0-9]{4})"
-        ],
-        "net_total": [
-            r"Gesamtwert\s*EUR\s*([0-9\.,]+)",
-            r"Gesamtwert.*?([0-9\.,]+)"
-        ],
-        "tax_amount": [
-            r"MwSt\.\s*[0-9,]+%?\s*EUR\s*([0-9\.,]+)",
-            r"MwSt.*?EUR\s*([0-9\.,]+)"
-        ],
-        "gross_total": [
-            r"Gesamtwert inkl\. MwSt\.\s*EUR\s*([0-9\.,]+)",
-            r"inkl\. MwSt.*?EUR\s*([0-9\.,]+)"
-        ],
-        "currency": [
-            r"\b(EUR)\b"
-        ]
-    }
+    text = clean(raw_text)
 
     extracted = {
-        "invoice_id": os.path.basename(pdf_path),
+        "invoice_id": os.path.basename(filepath),
         "raw_text": raw_text
     }
 
-    # ---------------- EXTRACT SIMPLE FIELDS ----------------
-    for field, pats in patterns.items():
-        value = get_first_match(pats, text)
+    # ---------------- INVOICE NUMBER ----------------
+    extracted["invoice_number"] = find_value([
+        r"Invoice\s*No[:\- ]*\s*(.+)",
+        r"Invoice\s*Number[:\- ]*\s*(.+)",
+        r"Inv\s*No[:\- ]*\s*(.+)",
+        r"Bill\s*No[:\- ]*\s*(.+)",
+        r"\b([A-Z]{2,10}\/[0-9]{2}-[0-9]{2}\/[0-9]+)\b",
+        r"\b([A-Z]{2,10}\/[0-9]{2,4}\/[0-9]+)\b",
+    ], text)
 
-        # Date conversion
-        if field == "invoice_date":
-            value = parse_date(value)
+    # ---------------- INVOICE DATE ----------------
+    extracted["invoice_date"] = extract_date(
+        find_value([
+            r"Dated[:\- ]*\s*(.+)",
+            r"Invoice\s*Date[:\- ]*\s*(.+)",
+            r"\b(\d{1,2}-[A-Za-z]{3}-\d{2,4})\b"
+        ], text)
+    )
 
-        # Amount conversion
-        if field in ["net_total", "tax_amount", "gross_total"]:
-            value = parse_amount(value)
+    # ---------------- SELLER NAME (Works on your 4 invoices) ----------------
+    seller = None
+    lines = raw_text.split("\n")
 
-        extracted[field] = value
+    for i, line in enumerate(lines):
+        if "GSTIN" in line:
+            # Line above GSTIN
+            if i > 0:
+                possible = lines[i - 1].strip()
+                if len(possible) > 2:
+                    seller = possible
 
-    # ---------------------- LINE ITEMS (STRICT FIXED VERSION) ---------------------
-    line_items = []
+            # Fallback 2 lines above
+            if not seller and i > 1:
+                possible = lines[i - 2].strip()
+                if len(possible) > 2:
+                    seller = possible
+            break
 
-    # Strict Euro price format: 2 decimal digits after comma
-    MONEY = r"[0-9]{1,6},[0-9]{2}"
+    extracted["seller_name"] = seller
 
-    item_pattern = rf"^\s*(\d+)\s+([A-Za-zÄÖÜäöüß\- ]+)\s+(\d+).*?({MONEY})$"
+    # ---------------- BUYER NAME (works on all your samples) ----------------
+    buyer = find_value([
+        r"Buyer.*?\n(.*?)\n",
+        r"Buyer\s*\(Bill to\)\s*\n(.*?)\n",
+        r"Billed To\s*\n(.*?)\n",
+    ], raw_text)
 
-    for line in raw_text.split("\n"):
-        line = line.strip()
+    extracted["buyer_name"] = buyer
 
-        # Reject lines containing phone numbers, slashes, or long IDs
-        if "/" in line:
-            continue
-        if re.search(r"\b[0-9]{7,}\b", line):  
-            continue  # rejects 11223344, 3498578433, 0102860405, etc.
+    # ---------------- TOTAL AMOUNTS ----------------
+    extracted["gross_total"] = extract_amount(
+        find_value([
+            r"Grand\s*Total[:\- ]*\s*([0-9,]+\.[0-9]+)",
+            r"Total\s*Amount[:\- ]*\s*([0-9,]+\.[0-9]+)",
+            r"Total\s*[:\- ]*\s*([0-9,]+\.[0-9]+)",
+        ], text)
+    )
 
-        # Must end with valid price
-        if not re.search(rf"{MONEY}$", line):
-            continue
+    extracted["net_total"] = extract_amount(
+        find_value([
+            r"Taxable\s*Value[:\- ]*\s*([0-9,]+\.[0-9]+)",
+            r"Subtotal[:\- ]*\s*([0-9,]+\.[0-9]+)",
+            r"Net\s*Total[:\- ]*\s*([0-9,]+\.[0-9]+)",
+        ], text)
+    )
 
-        m = re.match(item_pattern, line)
-        if m:
-            _, desc, qty, total = m.groups()
-            line_items.append(LineItem(
-                description=desc.strip(),
-                quantity=float(qty),
-                unit_price=None,
-                line_total=parse_amount(total)
-            ))
+    extracted["tax_amount"] = extract_amount(
+        find_value([
+            r"CGST.*?([0-9,]+\.[0-9]+)",
+            r"SGST.*?([0-9,]+\.[0-9]+)",
+            r"IGST.*?([0-9,]+\.[0-9]+)",
+        ], text)
+    )
 
-    extracted["line_items"] = line_items
+    # ---------------- LINE ITEMS (optional for now) ----------------
+    extracted["line_items"] = []  # you can upgrade later
 
-    # ---------------- RETURN AS INVOICE OBJECT ----------------
-    return Invoice(**extracted).dict()
+    return extracted
+
+
+# ---------------------------- WRAPPER FOR FASTAPI ----------------------------
+
+def extract_invoice(pdf_bytes: bytes):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+        tmp.write(pdf_bytes)
+        tmp_path = tmp.name
+
+    return extract_invoice_from_pdf(tmp_path)
