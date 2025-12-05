@@ -66,43 +66,35 @@ The actual implementation and design details were written manually.
 
 ---
 
-### Notes
-AI acted only as a helper for complex patterns and debugging.  
-All extraction logic, validation rules, CLI workflow, and API code were fully implemented by me.
-
-
 ## How This Could Integrate Into a Larger System
 
-This Invoice QC Service is designed so that it can easily plug into a bigger workflow where companies receive and process invoices regularly.
+This Invoice QC Service is built in a modular way so it can fit easily into a larger invoice-processing workflow.
 
-### 1. Upstream Integration (Before QC)
-In a real system, invoices may come from:
+### 1. Before QC (Upstream Systems)
+Invoices usually come from:
 - Email automation
-- A document upload portal
-- A scanning/OCR service
+- Upload portals
+- Scanning/OCR tools
 
-Any of these services can simply call the `/validate-json` API after extracting the text.  
-The QC service then checks whether the invoice is complete and valid before sending it further into the system.
+Any of these systems can call the `/validate-json` API after extracting invoice data.  
+The QC service then checks whether the invoice is complete and correctly formatted.
 
-### 2. Downstream Integration (After QC)
-Once the invoice is validated, another service (for example, an ERP or accounting system) can:
-- Automatically accept the invoice
-- Flag it for manual review if errors are found
-- Store the validation summary for reporting
+### 2. After QC (Downstream Systems)
+Once validation is done:
+- Clean invoices can be automatically pushed into an ERP or accounting system.
+- Invalid invoices can be flagged for manual review.
+- The validation report can be logged for audit or analytics purposes.
 
-### 3. Scheduled or Batch Processing
-Some companies process invoices in batches (e.g., at night).  
-A simple cron job could run:
+### 3. Batch or Scheduled Processing
+Organizations often process invoices in batches (e.g., daily).  
+A simple cron job can run:
 
 ```bash
 python -m invoice_qc.cli full-run --pdf-dir invoices --report daily_report.json
 ```
 
-This makes it easy to automate QC without manual intervention.
+This allows the entire QC workflow to run automatically without human involvement.
 
-### 4. Containerization (Optional)
-If needed, the service can be packaged into a Docker container so it can run as a small microservice inside cloud or on-prem systems.
-
-The goal is that this QC service remains simple, modular, and reusable so it can fit into different setups depending on how the company handles invoices.
+Overall, the system is designed to stay simple and flexible so it can easily plug into any existing document pipeline.
 
 
