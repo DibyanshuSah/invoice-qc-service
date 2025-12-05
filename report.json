@@ -1,0 +1,68 @@
+{
+  "invoices": [
+    {
+      "invoice_id": "sample_pdf_1.pdf",
+      "invoice_number": "AUFNR34343",
+      "is_valid": false,
+      "errors": [
+        "missing_field: seller_name",
+        "missing_field: buyer_name"
+      ],
+      "warnings": []
+    },
+    {
+      "invoice_id": "sample_pdf_2.pdf",
+      "invoice_number": "AUFNR234953",
+      "is_valid": false,
+      "errors": [
+        "missing_field: seller_name",
+        "missing_field: buyer_name"
+      ],
+      "warnings": []
+    },
+    {
+      "invoice_id": "sample_pdf_3.pdf",
+      "invoice_number": "AUFNR34869",
+      "is_valid": false,
+      "errors": [
+        "missing_field: seller_name",
+        "missing_field: buyer_name",
+        "business_rule_failed: totals_mismatch",
+        "business_rule_failed: line_items_mismatch"
+      ],
+      "warnings": []
+    },
+    {
+      "invoice_id": "sample_pdf_4.pdf",
+      "invoice_number": "AUFNR123456",
+      "is_valid": false,
+      "errors": [
+        "missing_field: seller_name",
+        "missing_field: buyer_name",
+        "business_rule_failed: line_items_mismatch"
+      ],
+      "warnings": []
+    },
+    {
+      "invoice_id": "sample_pdf_5.pdf",
+      "invoice_number": "AUFNR89493",
+      "is_valid": false,
+      "errors": [
+        "missing_field: seller_name",
+        "missing_field: buyer_name"
+      ],
+      "warnings": []
+    }
+  ],
+  "summary": {
+    "total_invoices": 5,
+    "valid_invoices": 0,
+    "invalid_invoices": 5,
+    "error_counts": {
+      "missing_field: seller_name": 5,
+      "missing_field: buyer_name": 5,
+      "business_rule_failed: totals_mismatch": 1,
+      "business_rule_failed: line_items_mismatch": 2
+    }
+  }
+}

@@ -1,0 +1,169 @@
+[
+  {
+    "invoice_id": "sample_pdf_1.pdf",
+    "invoice_number": "AUFNR34343",
+    "external_reference": null,
+    "invoice_date": "2024-05-22",
+    "due_date": null,
+    "seller_name": null,
+    "seller_tax_id": null,
+    "buyer_name": null,
+    "buyer_tax_id": null,
+    "currency": "EUR",
+    "net_total": 6400.0,
+    "tax_amount": 1216.0,
+    "gross_total": 7616.0,
+    "payment_terms": null,
+    "line_items": [
+      {
+        "description": "Sterilisationsmittel",
+        "quantity": 4.0,
+        "unit_price": null,
+        "line_total": 6400.0
+      }
+    ],
+    "raw_text": "Seite 1 von 1\nABC Corporation Bestellung AUFNR34343 im Auftrag von 3498578433\nBeispielname Unternehmen\nBeispielname Unternehmen \u00b7 Albertus-Magnus-Str. 8, Matternfeld, SL 44624 Kundenanschrift\nBeispielname Unternehmen\nmedical equipment (Deutschland)\nAlbertus-Magnus-Str. 8,\nIndustriestra\u00dfe 3\nMatternfeld, SL 44624\n12345 K\u00f6ln Deutschland\nIhre Faxnummer: 0800-12646711\nBestellung AUFNR34343 vom 22.05.2024\nUnsere Kundennummer Unser(e) Eink\u00e4ufer(in) Telefon f\u00fcr R\u00fcckfragen Fax f\u00fcr R\u00fcckfragen\n11223344 Beispielname 060/1212121 0102860405\nEndkundennummer\n7654321\nBitte liefern Sie an: Gew\u00fcnschtes Lieferdatum\nZentraleinkauf sofort\nBeispielname Unternehmen\nAlbertus-Magnus-Str. 8, Lieferbedingungen\nKeine Angabe\nMatternfeld, SL 44624\nZahlungsbedingungen\n0 Tage 2,0% Skonto\nPos. Artikelbeschreibung Preis in Menge Einheit Umrechnung Bestellwert\nEUR in EUR\n1 Sterilisationsmittel 4 VE 1 VE=20 St\u00fcck 64,00\nLief.Art.Nr: 000253655G\nInterne Mat.Nr: 49115 16,0000 pro 1 VE\nKostenstelle: 20457\nGesamtwert EUR 64,00\nMwSt. 19,00% EUR 12,16\nGesamtwert inkl. MwSt. EUR 76,16"
+  },
+  {
+    "invoice_id": "sample_pdf_2.pdf",
+    "invoice_number": "AUFNR234953",
+    "external_reference": null,
+    "invoice_date": "2022-05-02",
+    "due_date": null,
+    "seller_name": null,
+    "seller_tax_id": null,
+    "buyer_name": null,
+    "buyer_tax_id": null,
+    "currency": "EUR",
+    "net_total": 21600.0,
+    "tax_amount": 4104.0,
+    "gross_total": 25704.0,
+    "payment_terms": null,
+    "line_items": [
+      {
+        "description": "LED-Monitore",
+        "quantity": 12.0,
+        "unit_price": null,
+        "line_total": 6400.0
+      },
+      {
+        "description": "USB-Maus",
+        "quantity": 2.0,
+        "unit_price": null,
+        "line_total": 3200.0
+      },
+      {
+        "description": "mechanische Tastatur",
+        "quantity": 5.0,
+        "unit_price": null,
+        "line_total": 12000.0
+      }
+    ],
+    "raw_text": "Seite 1 von 1\nJKL Corporation Bestellung AUFNR234953 im Auftrag von 0293479054\nSoftwareunternehmen\nSoftwareunternehmen \u00b7 Philipp-Ott-Str. 64, S\u00fcd Lenjaberg, SN 48103 Kundenanschrift\nSoftwareunternehmen\nUnternehmen f\u00fcr Computerteile\nPhilipp-Ott-Str. 64,\nViviengr\u00fcn, SH 50647\nS\u00fcd Lenjaberg, SN 48103\nDeutschland\nIhre Faxnummer: 0800-78787878\nBestellung AUFNR234953 vom 02.05.2022\nUnsere Kundennummer Unser(e) Eink\u00e4ufer(in) Telefon f\u00fcr R\u00fcckfragen Fax f\u00fcr R\u00fcckfragen\n4380292 Mann, Mister 030/190909090 986758997\nEndkundennummer\n2342154\nBitte liefern Sie an: Gew\u00fcnschtes Lieferdatum\nZentraleinkauf sofort\nSoftwareunternehmen\nPhilipp-Ott-Str. 64, Lieferbedingungen\nKeine Angabe\nS\u00fcd Lenjaberg, SN 48103\nZahlungsbedingungen\n0 Tage 2,0% Skonto\nPos. Artikelbeschreibung Preis in Menge Einheit Umrechnung Bestellwert\nEUR in EUR\n1 LED-Monitore 12' 4 VE 1 VE=20 St\u00fcck 64,00\nLief.Art.Nr: 000252944C\nInterne Mat.Nr: 48805 16,0000 pro 1 VE\nKostenstelle: 19257\n2 USB-Maus 2 VE 1 VE=20 St\u00fcck 32,00\nLief.Art.Nr: 000252944C\nInterne Mat.Nr: 49786 16,0000 pro 1 VE\nKostenstelle: 19257\n3 mechanische Tastatur 5 VE 1 VE=600 St\u00fcck 120,00\nLief.Art.Nr: 00025843C\nInterne Mat.Nr: 23359\nKostenstelle: 19257 24,0000 pro 1 VE\nGesamtwert EUR 216,00\nMwSt. 19,00% EUR 41,04\nGesamtwert inkl. MwSt. EUR 257,04"
+  },
+  {
+    "invoice_id": "sample_pdf_3.pdf",
+    "invoice_number": "AUFNR34869",
+    "external_reference": null,
+    "invoice_date": "2025-05-28",
+    "due_date": null,
+    "seller_name": null,
+    "seller_tax_id": null,
+    "buyer_name": null,
+    "buyer_tax_id": null,
+    "currency": "EUR",
+    "net_total": 1.08,
+    "tax_amount": 20520.0,
+    "gross_total": 1.2852,
+    "payment_terms": null,
+    "line_items": [
+      {
+        "description": "Bohrmaschine",
+        "quantity": 4.0,
+        "unit_price": null,
+        "line_total": 64000.0
+      },
+      {
+        "description": "Bergmannshelm mit Fackeln",
+        "quantity": 2.0,
+        "unit_price": null,
+        "line_total": 32000.0
+      },
+      {
+        "description": "Schaufeln",
+        "quantity": 5.0,
+        "unit_price": null,
+        "line_total": 12000.0
+      }
+    ],
+    "raw_text": "Seite 1 von 1\nERT Corporation Bestellung AUFNR34869 im Auftrag von 7892348503\nBeispiel Bergbauunternehmen\nBeispiel Bergbauunternehmen \u00b7 Cranachstr. 958, Alt Eileendorf, ST 27780 Kundenanschrift\nBeispiel Bergbauunternehmen\nMiningEquip (Deutschland)\nCranachstr. 958,\nIndustriestra\u00dfe 3\nAlt Eileendorf, ST 27780\nHH 70325\nDeutschland\nIhre Faxnummer: 080-8777567\nBestellung AUFNR34869 vom 28.05.2025\nUnsere Kundennummer Unser(e) Eink\u00e4ufer(in) Telefon f\u00fcr R\u00fcckfragen Fax f\u00fcr R\u00fcckfragen\n87698553 Name, zuf\u00e4lliger 050/4325324 90823401145\nEndkundennummer\n5748943\nBitte liefern Sie an: Gew\u00fcnschtes Lieferdatum\nZentraleinkauf sofort\nBeispiel Bergbauunternehmen\nLieferbedingungen\nBeispielstra\u00dfe 10\nKeine Angabe\n80000 M\u00fcnchen\nZahlungsbedingungen\n0 Tage 2,0% Skonto\nPos. Artikelbeschreibung Preis in Menge Einheit Umrechnung Bestellwert\nEUR in EUR\n1 Bohrmaschine 4 VE 1 VE=20 St\u00fcck 640,00\nLief.Art.Nr: 000453955M\nInterne Mat.Nr: 45505 160,0000 pro 1 VE\nKostenstelle: 19587\n2 Bergmannshelm mit Fackeln 2 VE 1 VE=20 St\u00fcck 320,00\nLief.Art.Nr: 000253356M\nInterne Mat.Nr: 57306 160,0000 pro 1 VE\nKostenstelle: 19587\n3 Schaufeln 5 VE 1 VE=600 St\u00fcck 120,00\nS40/5-100[21159]\nLief.Art.Nr: WM-00-M/50\nInterne Mat.Nr: 21259 24,0000 pro 1 VE\nKostenstelle: 19587\nGesamtwert EUR 1.080,00\nMwSt. 19,00% EUR 205,20\nGesamtwert inkl. MwSt. EUR 1.285,20"
+  },
+  {
+    "invoice_id": "sample_pdf_4.pdf",
+    "invoice_number": "AUFNR123456",
+    "external_reference": null,
+    "invoice_date": "2022-05-02",
+    "due_date": null,
+    "seller_name": null,
+    "seller_tax_id": null,
+    "buyer_name": null,
+    "buyer_tax_id": null,
+    "currency": "EUR",
+    "net_total": 21600.0,
+    "tax_amount": 4104.0,
+    "gross_total": 25704.0,
+    "payment_terms": null,
+    "line_items": [
+      {
+        "description": "Schutzmaske Medium",
+        "quantity": 4.0,
+        "unit_price": null,
+        "line_total": 6400.0
+      }
+    ],
+    "raw_text": "Seite 1 von 1\nXYZ Corporation Bestellung AUFNR123456 im Auftrag von 9876543210\nFreiburg Gesundheitszentrum M\u00fcnchen gGmbH\nFreiburg Gesundheitszentrum M\u00fcnchen gGmbH \u00b7 Beispielstra\u00dfe 10 \u00b7 80000 M\u00fcnchen Kundenanschrift\nFreiburg Gesundheitszentrum\nMedEquip (Deutschland) GmbH\nM\u00fcnchen gGmbH\nIndustriestra\u00dfe 3 Beispielstra\u00dfe 10\n80000 M\u00fcnchen\n12345 K\u00f6ln\nDeutschland\nIhre Faxnummer: 0800-11111111\nBestellung AUFNR123456 vom 02.05.2022\nUnsere Kundennummer Unser(e) Eink\u00e4ufer(in) Telefon f\u00fcr R\u00fcckfragen Fax f\u00fcr R\u00fcckfragen\n1234567 Deutscher, Herr 030/1212121 0102030405\nEndkundennummer\n7654321\nBitte liefern Sie an: Gew\u00fcnschtes Lieferdatum\nZentraleinkauf sofort\nFreiburg Gesundheitszentrum\nLieferbedingungen\nBeispielstra\u00dfe 10\nKeine Angabe\n80000 M\u00fcnchen\nZahlungsbedingungen\n0 Tage 2,0% Skonto\nPos. Artikelbeschreibung Preis in Menge Einheit Umrechnung Bestellwert\nEUR in EUR\n1 Schutzmaske Medium 4 VE 1 VE=20 St\u00fcck 64,00\nLief.Art.Nr: 000252955H\nInterne Mat.Nr: 49305 16,0000 pro 1 VE\nKostenstelle: 19257\n2 Disp Mask small CV_ w/o hook[49306] 2 VE 1 VE=20 St\u00fcck 32,00\nLief.Art.Nr: 000252954H\nInterne Mat.Nr: 49306 16,0000 pro 1 VE\nKostenstelle: 19257\n3 Standard-Monitoring EKG Elektrode / Clinical 5 VE 1 VE=600 St\u00fcck 120,00\nS40/5-100[29459]\nLief.Art.Nr: WS-00-S/50\nInterne Mat.Nr: 29459 24,0000 pro 1 VE\nKostenstelle: 19257\nGesamtwert EUR 216,00\nMwSt. 19,00% EUR 41,04\nGesamtwert inkl. MwSt. EUR 257,04"
+  },
+  {
+    "invoice_id": "sample_pdf_5.pdf",
+    "invoice_number": "AUFNR89493",
+    "external_reference": null,
+    "invoice_date": "2025-08-18",
+    "due_date": null,
+    "seller_name": null,
+    "seller_tax_id": null,
+    "buyer_name": null,
+    "buyer_tax_id": null,
+    "currency": "EUR",
+    "net_total": 26400.0,
+    "tax_amount": 5016.0,
+    "gross_total": 31416.0,
+    "payment_terms": null,
+    "line_items": [
+      {
+        "description": "Hefter- und Stecknadelset",
+        "quantity": 4.0,
+        "unit_price": null,
+        "line_total": 6400.0
+      },
+      {
+        "description": "Ordner",
+        "quantity": 2.0,
+        "unit_price": null,
+        "line_total": 3200.0
+      },
+      {
+        "description": "Schaufeln",
+        "quantity": 5.0,
+        "unit_price": null,
+        "line_total": 12000.0
+      },
+      {
+        "description": "Schaufeln",
+        "quantity": 2.0,
+        "unit_price": null,
+        "line_total": 4800.0
+      }
+    ],
+    "raw_text": "Seite 1 von 1\nBMN Corporation Bestellung AUFNR89493 im Auftrag von 789949503\nUnternehmensunternehmen\nUnternehmensunternehmen \u00b7 Auf der Weide 8, Nicobrunn, RP 27408 Kundenanschrift\nUnternehmensunternehmen\nSuppliesEquip (Deutschland)\nAuf der Weide 8,\nLuchagen,\nNicobrunn, RP 27408\nSH 57362 Deutschland\nIhre Faxnummer: 080-9472203\nBestellung AUFNR89493 vom 18.08.2025\nUnsere Kundennummer Unser(e) Eink\u00e4ufer(in) Telefon f\u00fcr R\u00fcckfragen Fax f\u00fcr R\u00fcckfragen\n9340923 Name, zuf\u00e4lliger 050/4553953 2234989584\nEndkundennummer\n23908473\nBitte liefern Sie an: Gew\u00fcnschtes Lieferdatum\nZentraleinkauf sofort\nUnternehmensunternehmen\nLieferbedingungen\nAuf der Weide 8,\nKeine Angabe\nNicobrunn, RP 27408\nZahlungsbedingungen\n0 Tage 2,0% Skonto\nPos. Artikelbeschreibung Preis in Menge Einheit Umrechnung Bestellwert\nEUR in EUR\n1 Hefter- und Stecknadelset 4 VE 1 VE=20 St\u00fcck 64,00\nLief.Art.Nr: 000454200U\nInterne Mat.Nr: 45505 16,0000 pro 1 VE\nKostenstelle: 20587\n2 Ordner 2 VE 1 VE=20 St\u00fcck 32,00\nLief.Art.Nr: 000251110U\nInterne Mat.Nr: 57306 16,0000 pro 1 VE\nKostenstelle: 19587\n3 Schaufeln 5 VE 1 VE=600 St\u00fcck 120,00\nLief.Art.Nr: 000553912U\nInterne Mat.Nr: 21455 24,0000 pro 1 VE\nKostenstelle: 20587\n4 Schaufeln 2 VE 1 VE=600 St\u00fcck 48,00\nLief.Art.Nr: 000798310U\nInterne Mat.Nr: 20211 24,0000 pro 1 VE\nKostenstelle: 20587\nGesamtwert EUR 264,00\nMwSt. 19,00% EUR 50,16\nGesamtwert inkl. MwSt. EUR 314,16"
+  }
+]
