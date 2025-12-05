@@ -51,7 +51,7 @@ This ensured the extractor did not incorrectly match phone numbers or unrelated 
 ---
 
 ### 2. Debugging & Issue Investigation
-During development, I used AI to understand certain bugs quickly —  
+During development, I used AI to understand certain bugs quickly : -   
 for example, why some text lines were being captured incorrectly or why a validation rule wasn’t triggering.  
 The final fixes were implemented manually after testing on actual invoice samples.
 
