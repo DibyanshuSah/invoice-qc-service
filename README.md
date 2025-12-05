@@ -51,8 +51,7 @@ This ensured the extractor did not incorrectly match phone numbers or unrelated 
 ---
 
 ### 2. Debugging & Issue Investigation
-During development, I used AI to understand certain bugs quickly : -   
-for example, why some text lines were being captured incorrectly or why a validation rule wasn’t triggering.  
+During development, I used AI to understand certain bugs quickly : - for example, why some text lines were being captured incorrectly or why a validation rule wasn’t triggering.  
 The final fixes were implemented manually after testing on actual invoice samples.
 
 ---
@@ -70,3 +69,40 @@ The actual implementation and design details were written manually.
 ### Notes
 AI acted only as a helper for complex patterns and debugging.  
 All extraction logic, validation rules, CLI workflow, and API code were fully implemented by me.
+
+
+## How This Could Integrate Into a Larger System
+
+This Invoice QC Service is designed so that it can easily plug into a bigger workflow where companies receive and process invoices regularly.
+
+### 1. Upstream Integration (Before QC)
+In a real system, invoices may come from:
+- Email automation
+- A document upload portal
+- A scanning/OCR service
+
+Any of these services can simply call the `/validate-json` API after extracting the text.  
+The QC service then checks whether the invoice is complete and valid before sending it further into the system.
+
+### 2. Downstream Integration (After QC)
+Once the invoice is validated, another service (for example, an ERP or accounting system) can:
+- Automatically accept the invoice
+- Flag it for manual review if errors are found
+- Store the validation summary for reporting
+
+### 3. Scheduled or Batch Processing
+Some companies process invoices in batches (e.g., at night).  
+A simple cron job could run:
+
+```bash
+python -m invoice_qc.cli full-run --pdf-dir invoices --report daily_report.json
+```
+
+This makes it easy to automate QC without manual intervention.
+
+### 4. Containerization (Optional)
+If needed, the service can be packaged into a Docker container so it can run as a small microservice inside cloud or on-prem systems.
+
+The goal is that this QC service remains simple, modular, and reusable so it can fit into different setups depending on how the company handles invoices.
+
+
